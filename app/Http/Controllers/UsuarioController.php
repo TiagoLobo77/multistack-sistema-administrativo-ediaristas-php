@@ -66,13 +66,11 @@ class UsuarioController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  User $usuario
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $usuario)
     {
-        $usuario = User::findOrFail($id);
-
         return view('usuarios.edit', [
             'usuario' => $usuario
         ]);
@@ -82,13 +80,11 @@ class UsuarioController extends Controller
      * Update the specified resource in storage.
      *
      * @param  UsuarioRequest $request
-     * @param  int  $id
+     * @param  User $usuario    
      * @return \Illuminate\Http\Response
      */
-    public function update(UsuarioRequest $request, $id)
+    public function update(UsuarioRequest $request, User $usuario)
     {
-        $usuario = User::findOrFail($id);
-
         $usuario->update([
             'name' => $request->name,
             'email' => $request->email,
@@ -102,13 +98,11 @@ class UsuarioController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  User $usuario
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $usuario)
     {
-        $usuario = User::findOrFail($id);
-
         $usuario->delete();
 
         return redirect()->route('usuarios.index')

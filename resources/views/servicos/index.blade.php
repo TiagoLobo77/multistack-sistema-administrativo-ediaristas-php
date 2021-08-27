@@ -7,39 +7,35 @@
 @stop
 
 @section('content')
-@if (session('mensagem'))
-    <div class="alert alert-success">
-      {{ session('mensagem') }}
-    </div>    
-@endif  
+  @include('_mensagens_sessao')
 
-<table class="table">
-    <thead>
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">nome</th>
-        <th scope="col">Ações</th>
-      </tr>
-    </thead>
-    <tbody>
-        @forelse ($servicos as $servico)
+  <table class="table">
+      <thead>
         <tr>
-            <th>{{ $servico->id }}</th>
-            <td>{{ $servico->nome }}</td>
-            <td>
-              <a href="{{ route('servicos.edit', $servico) }}" class="btn btn-primary">Atualizar</a>
-            </td>
-          </tr>
-        @empty  
+          <th scope="col">ID</th>
+          <th scope="col">nome</th>
+          <th scope="col">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+          @forelse ($servicos as $servico)
           <tr>
-              <th></th>
-              <th>Nenhum registro foi encontrado</th>
-              <th></th>
-          </tr>
-        @endforelse
-      
-    </tbody>
-  </table>
+              <th>{{ $servico->id }}</th>
+              <td>{{ $servico->nome }}</td>
+              <td>
+                <a href="{{ route('servicos.edit', $servico) }}" class="btn btn-primary">Atualizar</a>
+              </td>
+            </tr>
+          @empty  
+            <tr>
+                <th></th>
+                <th>Nenhum registro foi encontrado</th>
+                <th></th>
+            </tr>
+          @endforelse
+        
+      </tbody>
+    </table>
 
   <div class="d-flex justify-content-center">
     {{ $servicos->links()}}
